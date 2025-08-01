@@ -138,13 +138,12 @@ export async function applyLpHolderShares(
     if (llIndex === -1) {
       increaseUserAmount(result, holder, boostedSyBalance);
     } else {
+      const llData = lpInfo.llDatas[llIndex];
+      const fee = POOL_INFO.liquidLockerFees?.[llData.name] ?? 0;
+
       increaseUserAmounts(
         result,
-        await resolveLiquidLocker(
-          boostedSyBalance,
-          lpInfo.llDatas[llIndex],
-          blockNumber
-        )
+        await resolveLiquidLocker(boostedSyBalance, llData, fee, blockNumber)
       );
     }
   }

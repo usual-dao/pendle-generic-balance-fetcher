@@ -6,6 +6,7 @@ import { getAllERC20Balances } from '../multicall';
 export async function resolveLiquidLocker(
   boostedSyBalance: ethers.BigNumber,
   llData: LiquidLockerData,
+  fee: number,
   blockNumber: number
 ): Promise<UserTempShare[]> {
   if (boostedSyBalance.isZero()) {
@@ -27,6 +28,19 @@ export async function resolveLiquidLocker(
   }
 
   const res: UserTempShare[] = [];
+
+  if (fee > 0) {
+    const feeShare = boostedSyBalance
+      .mul(ethers.utils.parseEther(fee.toString()))
+      .div(ethers.constants.WeiPerEther);
+
+    res.push({
+      user: llData.lpHolder,
+      share: feeShare
+    });
+
+    boostedSyBalance = boostedSyBalance.sub(feeShare);
+  }
 
   for (let j = 0; j < users.length; ++j) {
     const user = users[j];
