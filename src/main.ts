@@ -83,7 +83,7 @@ async function fetchUserBalanceSnapshotBatch(
 }
 
 async function main() {
-  const block = 22835503;
+  const block = 21081894;
 
   const res = (await fetchUserBalanceSnapshotBatch([block]))[0];
 
