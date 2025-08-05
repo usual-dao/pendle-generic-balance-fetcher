@@ -10,5 +10,8 @@ export const POOL_INFO: PoolConfiguration = {
       address: '0xe93b4a93e80bd3065b290394264af5d82422ee70',
       deployedBlock: 22472324
     }
-  ]
+  ],
+  liquidLockerFees: {
+    stakedao: 0.15
+  }
 };

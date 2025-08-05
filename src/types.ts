@@ -14,6 +14,7 @@ export interface PoolConfiguration {
   SY: string;
   YT: string;
   LPs: Market[];
+  liquidLockerFees?: Partial<Record<string, number>>;
 }
 
 export type UserRecord = Record<string, ethers.BigNumber>;
