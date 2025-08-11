@@ -64,7 +64,7 @@ async function fetchUserLpValueInSYSnapshot(
   };
 }
 
-async function fetchUserBalanceSnapshotBatch(
+export async function fetchUserBalanceSnapshotBatch(
   blockNumbers: number[],
   fetchingLpValueInSY: boolean = false
 ): Promise<SnapshotResult[]> {
@@ -98,4 +98,4 @@ async function main() {
   // }
 }
 
-main().catch(console.error);
+if (require.main === module) main().catch(console.error);
