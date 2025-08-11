@@ -64,7 +64,7 @@ async function fetchUserLpValueInSYSnapshot(
   };
 }
 
-async function fetchUserBalanceSnapshotBatch(
+export async function fetchUserBalanceSnapshotBatch(
   blockNumbers: number[],
   fetchingLpValueInSY: boolean = false
 ): Promise<SnapshotResult[]> {
@@ -83,7 +83,7 @@ async function fetchUserBalanceSnapshotBatch(
 }
 
 async function main() {
-  const block = 22835503;
+  const block = 21081894;
 
   const res = (await fetchUserBalanceSnapshotBatch([block]))[0];
 
@@ -98,4 +98,4 @@ async function main() {
   // }
 }
 
-main().catch(console.error);
+if (require.main === module) main().catch(console.error);
